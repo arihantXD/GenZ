@@ -62,7 +62,7 @@
             <h6>Men</h6>
             <a href="/genz/get/Men/All"><span>Men All</span></a>
             <a href="/genz/get/Men/T-Shirts"><span>T-Shirts</span></a>
-            <a href="/genz/get/Men/Jackets"><span>Jackets</span></a>
+            <a href="/genz/get/Men/Shirtings"><span>Shirtings</span></a>
             <a href="/genz/get/Men/Sweatshirts"><span>Sweatshirts</span></a>
             <a href="/genz/get/Men/Bottoms"><span>Bottoms</span></a>
         </div>
@@ -70,7 +70,7 @@
             <h6>Women</h6>
             <a href="/genz/get/Women/All"><span>Women All </span> </a>
             <a href="/genz/get/Women/T-Shirts"><span>T-Shirts</span></a>
-            <a href="/genz/get/Women/Jackets"><span>Jackets</span> </a>
+            <a href="/genz/get/Women/Shirtings"><span>Shirtings</span> </a>
             <a href="/genz/get/Women/Tops"><span>Tops</span> </a>
             <a href="/genz/get/Women/Sweatshirts"><span>Sweatshirts</span> </a>
             <a href="/genz/get/Women/Bottoms"><span>Bottoms</span> </a>
@@ -170,7 +170,7 @@
     cartDiv.addEventListener("change", (event) => {
         if (event.target.tagName === "SELECT") {
             const obj = { id: event.target.getAttribute("name"), qty: event.target.value };
-            const onUrl = 'https://genz-91f1.onrender.com/genz/getCart/updateCart';
+            const onUrl = 'https://gen-z-five.vercel.app/genz/getCart/updateCart';
             const offUrl = "http://localhost:3000/genz/getCart/updateCart";
             const response = fetch(onUrl, {
                 method: 'POST',
@@ -191,7 +191,7 @@
 
 
     function deleteCartItem(data) {
-        const onUrl = 'https://genz-91f1.onrender.com/genz/getCart/deleteProd';
+        const onUrl = 'https://gen-z-five.vercel.app/genz/getCart/deleteProd';
         const offUrl = "http://localhost:3000/genz/getCart/deleteProd";
         const obj = { id: data };
         const response = fetch(onUrl, {
@@ -212,7 +212,7 @@
 
     function getCartItem() {
         const offUrl = "http://localhost:3000/genz/getCart";
-        const onUrl = 'https://genz-91f1.onrender.com/genz/getCart';
+        const onUrl = 'https://gen-z-five.vercel.app/genz/getCart';
         const response = fetch(onUrl, {
             method: 'GET',
             headers: {

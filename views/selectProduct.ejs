@@ -64,27 +64,27 @@
     </div>
 
     <script>
-        let swapImg = [];
-        const urloff = ['http://localhost:3000/genz/getImages/F', "http://localhost:3000/genz/addCart"];
-        const urlon = ['https://genz-91f1.onrender.com/genz/getImages/F',
-            'https://genz-91f1.onrender.com/genz/addCart'];
-        function getImg() {
-            fetch(urlon[0], {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                }
-            })
-                .then(response => response.json())
-                .then(data => {
-                    swapImg = data;
-                })
-                .catch(error => {
-                    console.error('Fetch error:', error);
-                });
-        }
+        // let swapImg = [];
+        // const urloff = ['http://localhost:3000/genz/getImages/F', "http://localhost:3000/genz/addCart"];
+        // const urlon = ['https://gen-z-five.vercel.app/genz/getImages',
+        //     'https://gen-z-five.vercel.app/genz/addCart'];
+        // function getImg() {
+        //     fetch(urlon[0], {
+        //         method: 'GET',
+        //         headers: {
+        //             'Content-Type': 'application/json',
+        //         }
+        //     })
+        //         .then(response => response.json())
+        //         .then(data => {
+        //             swapImg = data;
+        //         })
+        //         .catch(error => {
+        //             console.error('Fetch error:', error);
+        //         });
+        // }
 
-        getImg();
+        // getImg();
 
 
         const productDiv = document.querySelectorAll(".product-img");
