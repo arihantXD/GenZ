@@ -65,9 +65,9 @@
 
     <script>
         // let swapImg = [];
-        // const urloff = ['http://localhost:3000/genz/getImages/F', "http://localhost:3000/genz/addCart"];
-        // const urlon = ['https://gen-z-five.vercel.app/genz/getImages',
-        //     'https://gen-z-five.vercel.app/genz/addCart'];
+        const urloff = ['http://localhost:3000/genz/getImages/F', "http://localhost:3000/genz/addCart"];
+        const urlon = ['https://gen-z-five.vercel.app/genz/getImages',
+            'https://gen-z-five.vercel.app/genz/addCart'];
         // function getImg() {
         //     fetch(urlon[0], {
         //         method: 'GET',
@@ -87,18 +87,18 @@
         // getImg();
 
 
-        const productDiv = document.querySelectorAll(".product-img");
-        const imgs = document.querySelectorAll(".img");
-        let tempImgSrc = "";
-        for (let i = 0; i < productDiv.length; i++) {
-            productDiv[i].addEventListener("mouseover", () => {
-                tempImgSrc = imgs[i].src;
-                imgs[i].src = swapImg[i];
-            });
-            productDiv[i].addEventListener('mouseout', function () {
-                imgs[i].src = tempImgSrc;
-            });
-        }
+        // const productDiv = document.querySelectorAll(".product-img");
+        // const imgs = document.querySelectorAll(".img");
+        // let tempImgSrc = "";
+        // for (let i = 0; i < productDiv.length; i++) {
+        //     productDiv[i].addEventListener("mouseover", () => {
+        //         tempImgSrc = imgs[i].src;
+        //         imgs[i].src = swapImg[i];
+        //     });
+        //     productDiv[i].addEventListener('mouseout', function () {
+        //         imgs[i].src = tempImgSrc;
+        //     });
+        // }
 
         const adder = document.querySelectorAll(".adder");
         const sizeDiv = document.querySelectorAll(".size-Div");
@@ -125,8 +125,8 @@
         for (let i = 0; i < sizes.length; i++) {
             sizes[i].addEventListener("click", (event) => {
                 currentSize = event.target.value;
-                addToCart[Math.floor(i / 6)].disabled = false;
-                addToCart[Math.floor(i / 6)].classList.add("cartAdder-active");
+                addToCart[Math.floor(i / sizes.length)].disabled = false;
+                addToCart[Math.floor(i / sizes.length)].classList.add("cartAdder-active");
             })
         }
 

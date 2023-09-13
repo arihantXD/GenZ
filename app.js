@@ -236,7 +236,7 @@ app.get("/genz/user/login", isNotLoggedIn, async (req, res) => {
 
 
 app.post('/genz/user/login', sanitizeUserContent, (req, res, next) => {
-  passport.authenticate('local', (err, user, info) => {
+  passport.authenticate('local',{keepSessionInfo: true}, (err, user, info) => {
     if (err) {
       return next(err);
     }
