@@ -376,23 +376,23 @@ app.get("/genz/order/confirmed/:id", sanitizeUserContent, async (req, res) => {
 
 app.get("/create", (req, res) => {
   res.render("create");
+
 })
 
 
 
 app.post("/create", async (req, res) => {
   const password = prompt("Enter Password")
-  if (passport === process.env.SECRET) {
-    const { name, price, gender, type, featured, xsdescription } = req.body;
-    const colorurl = req.body.colorurl.split(",");
-    const description = req.body.description.split("\n");
-    const sizes = req.body.sizes.split(",");
-    const product = new Product({
-      name: name, price: price, gender: gender, description: description, colors: colorurl, sizes: sizes, xsdescription: xsdescription, type: type, featured: featured
-    });
-    await product.save();
-    res.send("Product created");
-  }
+  const { name, price, gender, type, featured, xsdescription } = req.body;
+  const colorurl = req.body.colorurl.split(",");
+  const description = req.body.description.split("\n");
+  const sizes = req.body.sizes.split(",");
+  const product = new Product({
+    name: name, price: price, gender: gender, description: description, colors: colorurl, sizes: sizes, xsdescription: xsdescription, type: type, featured: featured
+  });
+  await product.save();
+  res.send("Product created");
+
 })
 
 
