@@ -316,11 +316,8 @@ app.post("/genz/order/info", isLoggedIn, sanitizeUserContent, async (req, res) =
 
 app.post("/genz/order/confirmed", isLoggedIn, isCartEmpty, async (req, res) => {
   let currentDate = new Date();
-  let dateParts = date.split('/');
-  let day = parseInt(dateParts[0], 10);
-  let month = parseInt(dateParts[1], 10);
-  let year = parseInt(dateParts[2], 10);
-  let orderDate = new Date(year, month - 1, day);
+  const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  let formattedDate = `${currentDate.toString().split(' ')[0]} ${monthNames[currentDate.getMonth()]} ${currentDate.getDate()} ${currentDate.getFullYear()}`;
   let totalAmount = 0, totalProduct = 0;
   for (let item of req.session.cart) {
     totalAmount += parseInt(item.price) * parseInt(item.qty);
@@ -333,7 +330,7 @@ app.post("/genz/order/confirmed", isLoggedIn, isCartEmpty, async (req, res) => {
     products: req.session.cart,
     totalAmount: totalAmount,
     totalProducts: totalProduct,
-    orderDate: orderDate,
+    orderDate: formattedDate,
     status: "Delivered",
     shippingAddress: req.user.address,
     paymentMethod: "ZCoin",
