@@ -20,7 +20,7 @@ const Order = require("./models/order");
 
 
 
-const dbUrl = process.env.DB_URL || "mongodb://127.0.0.1/GenZ";
+const dbUrl = "mongodb://127.0.0.1/GenZ";
 
 const store = new MongoDBStore({
   uri: dbUrl,
@@ -146,8 +146,8 @@ function isCartEmpty(req, res, next) {
 
 
 app.get("/", async (req, res) => {
-  const featuredProducts = await Product.find({type: "FeaturedProducts"});
-  const newArrivals = await Product.find({type: "NewArrivals"});
+  const featuredProducts = await Product.find({featured: "Featured Products"});
+  const newArrivals = await Product.find({featured: "New Arrivals"});
   res.render("home", { featuredProducts, newArrivals })
 })
 
@@ -165,8 +165,8 @@ app.get("/genz/get/:id", sanitizeUserContent, async (req, res) => {
 
 app.get("/genz/get/:gender/:type", sanitizeUserContent, async (req, res) => {
   const { gender, type } = req.params;
-  if (type === "FeaturedProducts" || type === "NewArriavals") {
-    const products = await Product.find({ type: type });
+  if (type === "Featured Products" || type === "New Arrivals") {
+    const products = await Product.find({ featured: type });
     return res.render("selectProduct", { products, gender, type });
   }
   if (type === "All") {
