@@ -20,7 +20,7 @@ const Order = require("./models/order");
 
 
 
-const dbUrl = "mongodb://127.0.0.1/GenZ";
+const dbUrl = process.env.DB_URL || "mongodb://127.0.0.1/GenZ";
 
 const store = new MongoDBStore({
   uri: dbUrl,
