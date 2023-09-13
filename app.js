@@ -146,8 +146,8 @@ function isCartEmpty(req, res, next) {
 
 
 app.get("/", async (req, res) => {
-  const featuredProducts = await Product.find({type: "Featured Products"});
-  const newArrivals = await Product.find({type: "New Arrivals"});
+  const featuredProducts = await Product.find({type: "FeaturedProducts"});
+  const newArrivals = await Product.find({type: "NewArrivals"});
   res.render("home", { featuredProducts, newArrivals })
 })
 
@@ -165,7 +165,7 @@ app.get("/genz/get/:id", sanitizeUserContent, async (req, res) => {
 
 app.get("/genz/get/:gender/:type", sanitizeUserContent, async (req, res) => {
   const { gender, type } = req.params;
-  if (type === "Featured Products" || type === "New Arriavals") {
+  if (type === "FeaturedProducts" || type === "NewArriavals") {
     const products = await Product.find({ type: type });
     return res.render("selectProduct", { products, gender, type });
   }
