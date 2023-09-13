@@ -1,0 +1,290 @@
+<link rel="stylesheet" href="/stylesheets/navbar.css">
+<div class="content-holder">
+    <nav>
+        <div class="nav-left">
+            <span class="desktop trigger">Men</span>
+            <span class="desktop trigger">Women</span>
+            <span class="desktop trigger">More</span>
+            <span class="mobile">
+                <img src="/images/ham.svg" alt="">
+            </span>
+        </div>
+        <div class="nav-mid">
+            <a href="/">
+                <span>GenZ</span>
+            </a>
+        </div>
+
+        <div class="nav-right">
+            <a class="desktop" href="#">
+                <span>Search</span>
+            </a>
+            <a class="desktop" href="/genz/user/login">
+                <span>Acoount</span>
+            </a>
+            <a class="desktop cart-listner" href="#">
+                <span>Cart</span>
+            </a>
+            <span class="mobile cart-listner">
+                <img src="/images/bag.svg" alt="">
+            </span>
+        </div>
+
+    </nav>
+    <div class="nav-subcategories">
+        <div class="nav-section-child">
+            <a href="/genz/get/Men/All"><span>Men All</span></a>
+            <a href="/genz/get/Men/T-Shirts"><span>T-Shirts</span></a>
+            <a href="/genz/get/Men/Jackets"><span>Jackets</span></a>
+            <a href="/genz/get/Men/Sweatshirts"><span>Sweatshirts</span></a>
+            <a href="/genz/get/Men/Bottoms"><span>Bottoms</span></a>
+        </div>
+        <div class="nav-section-child">
+            <a href="/genz/get/Women/All"><span>Women All </span> </a>
+            <a href="/genz/get/Women/T-Shirts"><span>T-Shirts</span></a>
+            <a href="/genz/get/Women/Jackets"><span>Jackets</span> </a>
+            <a href="/genz/get/Women/Tops"><span>Tops</span> </a>
+            <a href="/genz/get/Women/Sweatshirts"><span>Sweatshirts</span> </a>
+            <a href="/genz/get/Women/Bottoms"><span>Bottoms</span> </a>
+        </div>
+        <div class="nav-section-child">
+            <a href="/genz/get/All/New Arriavals"><span>New Arriavals</span></a>
+            <a href="/genz/get/All/Featured Products"><span>Featured Products</span></a>
+        </div>
+
+    </div>
+    <div class="heading-line">
+        <span>There's no such thing like overstyling</span>
+    </div>
+
+    <div class="ham-section">
+        <div class="ham-section-child">
+            <h6>Men</h6>
+            <a href="/genz/get/Men/All"><span>Men All</span></a>
+            <a href="/genz/get/Men/T-Shirts"><span>T-Shirts</span></a>
+            <a href="/genz/get/Men/Jackets"><span>Jackets</span></a>
+            <a href="/genz/get/Men/Sweatshirts"><span>Sweatshirts</span></a>
+            <a href="/genz/get/Men/Bottoms"><span>Bottoms</span></a>
+        </div>
+        <div class="ham-section-child">
+            <h6>Women</h6>
+            <a href="/genz/get/Women/All"><span>Women All </span> </a>
+            <a href="/genz/get/Women/T-Shirts"><span>T-Shirts</span></a>
+            <a href="/genz/get/Women/Jackets"><span>Jackets</span> </a>
+            <a href="/genz/get/Women/Tops"><span>Tops</span> </a>
+            <a href="/genz/get/Women/Sweatshirts"><span>Sweatshirts</span> </a>
+            <a href="/genz/get/Women/Bottoms"><span>Bottoms</span> </a>
+        </div>
+        <div class="ham-section-child">
+            <h6>More</h6>
+            <a href="/genz/get/All/New Arriavals"><span>New Arriavals</span></a>
+            <a href="/genz/get/All/Featured Products"><span>Featured Products</span></a>
+            <a href="/genz/user/login"><span>Account</span></a>
+        </div>
+
+    </div>
+    <div class="cart-holder">
+        <div class="cart-div">
+            <div class="cart-div-head">
+                <h6 class="item-count">You have 0 items in your cart</h6>
+                <ion-icon class="close" name="close-outline"></ion-icon>
+            </div>
+            <div class="product-list">
+            </div>
+            <div class="cart-details">
+                <div class="detail-value">
+                    <div class="detail-value-child">
+                        <span>Order Value</span>
+                        <span id="order-value"></span>
+                    </div>
+                    <div class="detail-value-child">
+                        <span>Delivery</span>
+                        <span id="order-delivery">Free</span>
+                    </div>
+                    <div class="detail-value-child">
+                        <span>Total</span>
+                        <span id="order-total"></span>
+                    </div>
+                </div>
+                <div class="detail-control">
+                    <a class="aPrime" href="/genz/order/checkout">Checkout</a>
+                    <a class="aSec" href="/">Continue Shopping</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    const mobile = document.querySelector(".mobile");
+    const hamSection = document.querySelector(".ham-section");
+    const carts = document.querySelectorAll(".cart-listner");
+    const cartDiv = document.querySelector(".cart-div");
+    const cartDivHead = document.querySelector(".cart-div-head");
+    const itemCount = document.querySelector(".item-count");
+    const prodList = document.querySelector(".product-list");
+    const cartDetails = document.querySelector(".cart-details");
+    const detailValue = document.querySelector(".detail-value");
+    const orderValue = document.querySelector("#order-value");
+    const orderDelivery = document.querySelector("#order-delivery");
+    const orderTotal = document.querySelector("#order-total");
+    const trigger = document.querySelectorAll(".trigger");
+    const navSection = document.querySelectorAll(".nav-section-child");
+    for (let i = 0; i < trigger.length; i++) {
+        trigger[i].addEventListener("click", () => {
+            for(let navEle of navSection){
+                navEle.classList.remove("nav-section-child-active");
+            }
+            navSection[i].classList.add("nav-section-child-active");
+        })
+    }
+
+
+    mobile.addEventListener("click", () => {
+        hamSection.classList.toggle("ham-section-active");
+        document.body.classList.toggle("hide");
+    })
+
+
+    for (let cart of carts) {
+        cart.addEventListener("click", () => {
+            cartDiv.classList.toggle("cart-div-active");
+        })
+        getCartItem();
+    }
+
+
+    const closeCart = document.querySelector(".close");
+    closeCart.addEventListener("click", () => {
+        cartDiv.classList.remove("cart-div-active");
+    })
+
+
+    cartDiv.addEventListener("click", (event) => {
+        if (event.target.tagName === "BUTTON") {
+            deleteCartItem(event.target.value);
+        }
+    })
+
+    cartDiv.addEventListener("change", (event) => {
+        if (event.target.tagName === "SELECT") {
+            const obj = { id: event.target.getAttribute("name"), qty: event.target.value };
+            const onUrl = 'https://genz-91f1.onrender.com/genz/getCart/updateCart';
+            const offUrl = "http://localhost:3000/genz/getCart/updateCart";
+            const response = fetch(onUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(obj)
+            })
+                .then(response => response.json())
+                .then(data => {
+                    getCartItem();
+                }).catch(error => {
+                    console.log(error);
+                })
+        }
+    })
+
+
+
+    function deleteCartItem(data) {
+        const onUrl = 'https://genz-91f1.onrender.com/genz/getCart/deleteProd';
+        const offUrl = "http://localhost:3000/genz/getCart/deleteProd";
+        const obj = { id: data };
+        const response = fetch(onUrl, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(obj)
+        })
+            .then(response => response.json())
+            .then(data => {
+                getCartItem();
+            }).catch(error => {
+                console.log(error);
+            })
+    }
+
+
+    function getCartItem() {
+        const offUrl = "http://localhost:3000/genz/getCart";
+        const onUrl = 'https://genz-91f1.onrender.com/genz/getCart';
+        const response = fetch(onUrl, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        })
+            .then(response => response.json())
+            .then(data => {
+                prodList.innerHTML = "";
+                let totalValue = 0;
+                let totalProd = 0;
+                for (let product of data) {
+                    const prodContainer = document.createElement("div");
+                    prodContainer.setAttribute("class", "product-container");
+                    prodContainer.setAttribute("data-id", product.id);
+                    const prodImg = document.createElement("div");
+                    prodImg.setAttribute("class", "prod-img");
+                    const img = document.createElement("img");
+                    img.setAttribute("src", product.img)
+                    prodImg.append(img);
+                    prodContainer.append(prodImg);
+                    const prodDetails = document.createElement("div");
+                    prodDetails.setAttribute("class", "prod-details");
+                    const prodNamePrice = document.createElement("div");
+                    prodNamePrice.setAttribute("class", "prod-name-price");
+                    const name = document.createElement("span");
+                    name.innerText = product.name;
+                    const price = document.createElement("span");
+                    price.setAttribute("class", "prod-price");
+                    price.innerText = product.price;
+                    totalValue += parseInt(product.price) * product.qty;
+                    prodNamePrice.append(name, price);
+                    prodDetails.append(prodNamePrice);
+                    const size = document.createElement("span");
+                    size.setAttribute("class", "prod-size");
+                    size.innerText = `Size: ${product.size}`;
+                    prodDetails.append(size);
+                    const prodQtyRemove = document.createElement("div");
+                    prodQtyRemove.setAttribute("class", "prod-qty-remove");
+                    const dropdown = document.createElement("select");
+                    dropdown.setAttribute("name", product.itemId);
+                    for (let i = 1; i <= 5; i++) {
+                        const option = document.createElement("option");
+                        option.setAttribute("value", i);
+                        option.textContent = i;
+                        dropdown.appendChild(option);
+                    }
+                    dropdown.setAttribute("max", 5);
+                    dropdown.value = product.qty;
+                    const remove = document.createElement("button");
+                    remove.setAttribute("class", "prod-remover");
+                    remove.setAttribute("value", product.pId);
+                    remove.innerText = "Remove";
+                    prodQtyRemove.append(dropdown, remove);
+                    prodDetails.append(prodQtyRemove);
+                    prodContainer.append(prodDetails);
+                    prodList.append(prodContainer);
+                    totalProd += parseInt(product.qty);
+                }
+                if (data.length === 0) {
+                    cartDetails.classList.remove("cart-details-active");
+                }
+                else {
+                    itemCount.innerText = ` You have ${totalProd} items in your cart`;
+                    cartDetails.classList.add("cart-details-active");
+                    orderValue.innerText = `$ ${totalValue}`;
+                    orderTotal.innerText = `$ ${totalValue}`;
+                }
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    }
+
+</script>

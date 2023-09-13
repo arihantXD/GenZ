@@ -1,0 +1,125 @@
+<% layout("/layout/boilerplate") %>
+    <link rel="stylesheet" href="/stylesheets/orderDetails.css">
+
+
+    <div class="main">
+        <h6 id="logo">GenZ</h6>
+        <div class="main-container">
+            <div class="main-left">
+                <h6>Order Delivered</h6>
+                <div class="order-details">
+                    <div class="order-details-left">
+                        <ion-icon name="checkmark-circle"></ion-icon>
+                    </div>
+                    <div class="order-details-right">
+                        <span>Order #765</span>
+                        <span><b>Thank you <%= order.name %>!</b></span>
+                    </div>
+                </div>
+                <div class="order-updates">
+                    <h6>Order Updates</h6>
+                    <div class="order-updates-child">
+                        <span>Order Date : </span>
+                        <span>
+                            <b>
+                                <%= order.orderDate %>
+                            </b>
+                        </span>
+                    </div>
+                    <div class="order-updates-child">
+                        <span>Shipping Method : </span>
+                        <span>
+                            <b>
+                                <%= order.shippingMethod %>
+                            </b>
+                        </span>
+                    </div>
+                    <div class="order-updates-child">
+                        <span>Payment Method : </span>
+                        <span>
+                            <b>
+                                <%= order.paymentMethod %>
+                            </b>
+                        </span>
+                    </div>
+                    <div class="order-updates-child">
+                        <span>Payment Status : </span>
+                        <span>
+                            <b>
+                                <%= order.paymentStatus %>
+                            </b>
+                        </span>
+                    </div>
+                </div>
+                <div class="contact-details">
+                    <h6>Contact Details</h6>
+                    <div class="contact-details-child">
+                        <span>Contact : </span>
+                        <span>
+                            <b>
+                                <%= order.email %>
+                            </b>
+                        </span>
+                    </div>
+                    <div class="contact-details-child">
+                        <span>Phone : </span>
+                        <span>
+                            <b>
+                                <%= order.phone %>
+                            </b>
+                        </span>
+                    </div>
+                    <div class="contact-details-child">
+                        <span>Shipping Address : </span>
+                        <span>
+                            <b>
+                                <%= order.shippingAddress %>
+                            </b>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="main-right">
+                <div class="main-right-head">
+                    <ion-icon name="bag-check"></ion-icon>
+                    <h6>Your Orders </h6>
+                </div>
+                <div class="confirm-prod-list">
+                    <% for(let prod of order.products) { %>
+                        <div class="detail-cards">
+                            <div class="card-left">
+                                <img src="<%=prod.img%>" alt="">
+                            </div>
+                            <div class="card-right">
+                                <span>
+                                    <%= prod.name %>
+                                </span>
+                                <span><b><%= prod.size %> x <%= prod.qty %>, $ <%= prod.price %></b></span>
+                            </div>
+                        </div>
+                        <% } %>
+                </div>
+                <div class="main-price-div">
+                    <div class="main-price-child">
+                        <span>Subtotal</span>
+                        <span>
+                            <b><%= order.totalAmount %></b>
+                        </span>
+                    </div>
+                    <div class="main-price-child">
+                        <span>Shipping</span>
+                        <span><b>Free</b></span>
+                    </div>
+                    <div class="main-price-child">
+                        <span>Total</span>
+                        <span>
+                            <b><%= order.totalAmount %></b>
+                        </span>
+                    </div>
+                </div>
+                <form action="/" method="get">
+                    <button type="submit">Continue Shopping</button>
+                </form>
+            </div>
+        </div>
+    </div>

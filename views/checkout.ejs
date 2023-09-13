@@ -1,0 +1,221 @@
+<% layout("/layout/boilerplate") %>
+    <link rel="stylesheet" href="/stylesheets/checkout.css">
+    <main>
+
+        <div class="main">
+            <div class="logo">
+                <a href="/">
+                    <h6>GenZ</h6>
+                </a>
+            </div>
+            <div class="flow-design">
+                <span>Cart</span>
+                <ion-icon name="chevron-forward-outline"></ion-icon>
+                <span class="flow-design-menu">Information</span>
+                <ion-icon name="chevron-forward-outline"></ion-icon>
+                <span class="flow-design-menu">Shipping</span>
+                <ion-icon name="chevron-forward-outline"></ion-icon>
+                <span class="flow-design-menu">Payment</span>
+            </div>
+            <div class="cart-summary">
+                <div class="summary-head">
+                    <div class="summary-head-child">
+                        <ion-icon name="cart-outline"></ion-icon>
+                        <span>Order Summary</span>
+                    </div>
+                    <div class="summary-head-child">
+                        <ion-icon class="cart-opener" name="chevron-down-outline"></ion-icon>
+                    </div>
+                </div>
+                <div class="summary-details">
+                    <div class="summary-details-div">
+                        <% for(let prod of cart) { %>
+                            <div class="detail-cards">
+                                <div class="card-left">
+                                    <img src="<%=prod.img%>" alt="">
+                                </div>
+                                <div class="card-right">
+                                    <span>
+                                        <%= prod.name %>
+                                    </span>
+                                    <span>Size: <%= prod.size %></span>
+                                    <span>Price: <%= prod.price %></span>
+                                    <span>Quantity: <%= prod.qty %></span>
+                                </div>
+                            </div>
+                            <% } %>
+                    </div>
+                    <div class="price-div">
+                        <div class="price-div-child">
+                            <span>Subtotal</span>
+                            <% let total=0; for(item of cart) {%>
+                                <% total+=item.price * item.qty; }%>
+                                    <span>$ <%= total %></span>
+                        </div>
+                        <div class="price-div-child">
+                            <span>Shipping</span>
+                            <span>Free</span>
+                        </div>
+                        <div class="price-div-child">
+                            <span>Total</span>
+                            <span>$ <%= total%></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="isp-div">
+
+                    <div class="contact-div">
+                        <h6>Information</h6>
+                        <input type="text" value="<%=user.name%>" class="infos" name="first-name" id=""
+                            placeholder="First Name">
+                        <input type="text" value="<%=user.lastname%>" class="infos" name="last-name" id=""
+                            placeholder="Last Name">
+                        <input type="text" value="<%=user.country%>" class="infos" name="country" id=""
+                            placeholder="Country">
+                        <input type="text" value="<%=user.city%>" class="infos" name="city" id="" placeholder="City">
+                        <input type="text" value="<%=user.address%>" class="infos" name="address" id=""
+                            placeholder="Address(Apartment, Colony, Locality)">
+                        <input type="number" value="<%=user.zipcode%>" class="infos" name="zipcode" id=""
+                            placeholder="Zipcode">
+                        <input type="number" value="<%=user.phone%>" class="infos" name="phone" id=""
+                            placeholder="Phone">
+                        <span style="text-align: start;" class="text-box"></span>
+                        <button btn-index="1" class="btn-prime" type="submit">Next</button>
+                        <button class="btn-sec" type="submit"><a href="/">Go Back</a></button>
+                    </div>
+
+                    <div class="shipping-div">
+                        <div class="shipping-div-head">
+                            <h6>Shipping Method</h6>
+                            <div class="ship-div-child">
+                                <span>Email </span>
+                                <span><b class="ship-div-email"></b> </span>
+                            </div>
+                            <div class="ship-div-child">
+                                <span>Ship to </span>
+                                <span><b class="ship-div-address"></b> </span>
+                            </div>
+                        </div>
+                        <div class="shipping-form-div">
+                            <input class="enabler" type="radio" name="" id="">
+                            <span>Free Tracked Shipping (4-7 Working Days)</span>
+                        </div>
+                        <button  disabled class="enable btn-sec" btn-index="2" type="submit">Next</button>
+                        <button  class="btn-prime" btn-index="-1" type="submit">Return to Information</button>
+                    </div>
+
+                    <div class="payment-div">
+                        <h6>Payment</h6>
+                        <div class="payment-div-head">
+                            <div class="ship-div-child">
+                                <span>Email</span>
+                                <span><b class="ship-div-email"></b> </span>
+                            </div>
+                            <div class="ship-div-child">
+                                <span>Ship to</span>
+                                <span><b class="ship-div-address"></b> </span>
+                            </div>
+                            <div class="ship-div-child">
+                                <span>Method</span>
+                                <span><b>Free Tracked Shipping (4-7 Working Days)</b> </span>
+                            </div>
+                        </div>
+                            <form action="/genz/order/confirmed" method="POST">
+                                <div class="payment-div-child">
+                                    <input class="enabler" type="radio" name="zcoin" id="">
+                                    <span>Use Z-Coin <b>(Promotional Unlimited Coins)</b></span>
+                                </div>
+                                <div class="payment-div-child">
+                                    <input type="radio" name="zcoin" id="" disabled>
+                                    <span>Use UPI(Coming Soon)</span>
+                                </div>
+                                <div class="payment-div-child">
+                                    <input type="radio" name="zcoin" id="" disabled>
+                                    <span>Use Credit Card(Coming Soon)</span>
+                                </div>
+                                <button class="enable btn-prime" disabled type="submit">Pay Now</button>
+                            </form>
+                        <button class="btn-sec" btn-index="-2" type="submit">Return to Shipping</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            const cartOpener = document.querySelector(".cart-opener");
+            const summaryDetails = document.querySelector(".summary-details");
+            const contactDiv = document.querySelector(".contact-div");
+            const shippingDiv = document.querySelector(".shipping-div");
+            const paymentDiv = document.querySelector(".payment-div");
+            const buttons = document.querySelectorAll("button");
+            const flowMenu = document.querySelectorAll(".flow-design-menu");
+            const infos = document.querySelectorAll(".infos");
+            const email = document.querySelectorAll(".ship-div-email");
+            const address = document.querySelectorAll(".ship-div-address");
+            const enabler = document.querySelectorAll(".enabler");
+            const enable = document.querySelectorAll(".enable");
+            const textBox = document.querySelector(".text-box");
+
+
+            flowMenu[0].style.fontWeight = "bold";
+            cartOpener.addEventListener("click", () => {
+                summaryDetails.classList.toggle("summary-details-active")
+            })
+            for (let btn of buttons) {
+                btn.addEventListener("click", (req, res) => {
+                    const index = parseInt(btn.getAttribute("btn-index"));
+                    if (Math.abs(btn.getAttribute("btn-index")) == 1) {
+                        let flag = true;
+                        for(let info of infos){
+                            if(info.value==""){
+                                flag = false;
+                                textBox.innerText = "Empty input fields are required to fill, try again!"
+                            }
+                        }
+                        if(flag){
+                            const obj = { firstname: infos[0].value, lastname: infos[1].value, country: infos[2].value, city: infos[3].value, address: infos[4].value, zipcode: infos[5].value, phone: infos[6].value };
+                            const urloff = "http://localhost:3000/genz/order/info";
+                            const urlon = "https://genz-91f1.onrender.com/genz/order/info"
+                            const response = fetch(urlon, {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                },
+                                body: JSON.stringify(obj)
+                            })
+                                .then(response => response.json())
+                                .then(data => {
+                                    email[0].innerText = data.username;
+                                    email[1].innerText = data.username;
+                                    address[0].innerText = obj.address;
+                                    address[1].innerText = obj.address;
+                                }).catch(error => {
+                                    console.log(error);
+                                })
+                            shippingDiv.classList.toggle("shipping-div-active")
+                    }} else if (Math.abs(btn.getAttribute("btn-index")) == 2) {
+                        paymentDiv.classList.toggle("payment-div-active");
+                    }
+                    for (let i = 0; i < flowMenu.length; i++) {
+                        if (i === index) {
+                            flowMenu[i].style.fontWeight = "bold";
+                        } else {
+                            flowMenu[i].style.fontWeight = "400";
+                            if (-1 * i === index) {
+                                flowMenu[i - 1].style.fontWeight = "bold";
+                            }
+                        }
+                    }
+                })
+            }
+
+
+            for (let i = 0; i < enabler.length; i++) {
+                enabler[i].addEventListener("click", () => {
+                    enable[i].disabled = false;
+                })
+            }
+
+
+        </script>
+    </main>

@@ -1,0 +1,157 @@
+<% layout("/layout/boilerplate") %>
+    <link rel="stylesheet" href="/stylesheets/selectProduct.css">
+
+    <div class="main">
+        <div class="head">
+            <h6><%= gender %> <%= type %></h6>
+        </div>
+        <div class="categorise">
+            <div class="categorise-left">
+                <div class="categorise-child">
+                    <span>Size</span>
+                    <ion-icon class="size" name="chevron-down-outline"></ion-icon>
+                </div>
+                <div class="categorise-child">
+                    <span>Color</span>
+                    <ion-icon class="color" name="chevron-down-outline"></ion-icon>
+                </div>
+                <div class="categorise-child">
+                    <span>Sort</span>
+                    <ion-icon class="sort" name="chevron-down-outline"></ion-icon>
+                </div>
+            </div>
+            <div class="categorise-right">
+                <div class="categorise-child">
+                    <ion-icon class="infoDiv" name="information-circle-outline"></ion-icon>
+                </div>
+            </div>
+        </div>
+        <div class="products">
+            <% for(let product of products){ %>
+                <div class="product-div">
+                    <div class="product-img">
+                        <a href="/genz/get/<%=product._id%>"><img class="img" src="<%=product.colors[0]%>" alt=""></a>
+                        <ion-icon class="adder" name="bag-add-outline"></ion-icon>
+                        <div class="size-Div">
+                            <h6>Size</h6>
+                            <div class="inputGroup">
+                                <% for(let size of products[0].sizes) {%>
+                                    <div class="sizeTile">
+                                        <input class="radioButton" type="radio" name="size" value="<%= size %>">
+                                        <label for="">
+                                            <span>
+                                                <%= size %>
+                                            </span>
+                                        </label>
+                                    </div>
+                                    <% } %>
+                            </div>
+                            <button disabled class="cartAdder" value="<%=product._id%>" type="submit">Add to
+                                Cart</button>
+                            <ion-icon id="close" name="close-outline"></ion-icon>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <span>
+                            <%=product.name%>
+                        </span>
+                        <span>$<%=product.price%></span>
+                    </div>
+                </div>
+                <% } %>
+        </div>
+
+    </div>
+
+    <script>
+        let swapImg = [];
+        const urloff = ['http://localhost:3000/genz/getImages/F', "http://localhost:3000/genz/addCart"];
+        const urlon = ['https://genz-91f1.onrender.com/genz/getImages/F',
+            'https://genz-91f1.onrender.com/genz/addCart'];
+        function getImg() {
+            fetch(urlon[0], {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                }
+            })
+                .then(response => response.json())
+                .then(data => {
+                    swapImg = data;
+                })
+                .catch(error => {
+                    console.error('Fetch error:', error);
+                });
+        }
+
+        getImg();
+
+
+        const productDiv = document.querySelectorAll(".product-img");
+        const imgs = document.querySelectorAll(".img");
+        let tempImgSrc = "";
+        for (let i = 0; i < productDiv.length; i++) {
+            productDiv[i].addEventListener("mouseover", () => {
+                tempImgSrc = imgs[i].src;
+                imgs[i].src = swapImg[i];
+            });
+            productDiv[i].addEventListener('mouseout', function () {
+                imgs[i].src = tempImgSrc;
+            });
+        }
+
+        const adder = document.querySelectorAll(".adder");
+        const sizeDiv = document.querySelectorAll(".size-Div");
+        for (let i = 0; i < adder.length; i++) {
+            adder[i].addEventListener("click", () => {
+                for (size of sizeDiv) {
+                    size.classList.remove("size-Div-active")
+                }
+                sizeDiv[i].classList.add("size-Div-active")
+            })
+        }
+
+        const closeSizeDive = document.querySelectorAll("#close");
+        for (let i = 0; i < closeSizeDive.length; i++) {
+            closeSizeDive[i].addEventListener("click", () => {
+                sizeDiv[i].classList.remove("size-Div-active");
+            })
+        }
+        
+        const sizes = document.querySelectorAll(".radioButton");
+        const addToCart = document.querySelectorAll(".cartAdder");
+        let currentSize = "";
+        let currentProd = "";
+        for (let i = 0; i < sizes.length; i++) {
+            sizes[i].addEventListener("click", (event) => {
+                currentSize = event.target.value;
+                addToCart[Math.floor(i / 6)].disabled = false;
+                addToCart[Math.floor(i / 6)].classList.add("cartAdder-active");
+            })
+        }
+
+        for (let i = 0; i < addToCart.length; i++) {
+            addToCart[i].addEventListener("click", (event) => {
+                currentProd = event.target.value;
+                const data = { pId: currentProd, size: currentSize };
+                fetch(urlon[1], {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data)
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        sizeDiv[i].classList.remove("size-Div-active");
+                        cartDiv.classList.toggle("cart-div-active");
+                        getCartItem();
+                    })
+                    .catch(error => {
+                        console.error('Fetch error:', error);
+                    });
+            })
+        }
+
+
+    </script>

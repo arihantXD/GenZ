@@ -1,0 +1,23 @@
+<% layout("/layout/boilerplate") %>
+    <link rel="stylesheet" href="/stylesheets/login.css">
+
+    <div class="main">
+        <div class="main-head">
+            <h5>
+                Sign in to your GenZ Account
+            </h5>
+            
+            <span>Don't have an account? <a href="/genz/user/register">Sign Up</a></span>
+            <span>Welcome to GenZ Clothing Store! Log in to access your personalized shopping experience. Discover the latest trends and create your unique style journey.</span>
+        </div>
+        <div class="main-form">
+            <span style="text-align: center;"> <% if(message) {%> <%= message %> <% }  %></span>
+            <form action="/genz/user/login" method="post">
+                <input placeholder="Email" type="email" name="username">
+                <input placeholder="Password" type="password" name="password" >
+                <span> <% if(error) {%> <%= error %> <% }  %></span>
+                <button  class="btn-sec" type="submit">Login</button>
+            </form>
+        </div>
+        <a class="forgetLink" href="">Forget Password</a>
+    </div>

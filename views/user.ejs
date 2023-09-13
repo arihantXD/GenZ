@@ -1,0 +1,106 @@
+<% layout("/layout/boilerplate") %>
+    <link rel="stylesheet" href="/stylesheets/user.css">
+
+    <div class="main">
+        <h6>Hey, <%= user.name %>
+        </h6>
+        <p>Thanks for creating an account with GenZ</p>
+        <span><%= success %></span>
+        <ul>
+            <li>
+                <span>My Deatails</span>
+                <ion-icon class="cart-opener" name="chevron-down-outline"></ion-icon>
+            </li>
+            <div class="user-details accordion">
+                <form action="/genz/user/update" method="post">
+                    <div class="items">
+                        <label for="firstname">First Name</label>
+                        <input type="text" value="<%= user.name  %>" name="firstname" id="firstname">
+                    </div>
+                    <div class="items">
+                        <label for="lastname">Last Name</label>
+                        <input type="text" value="<%= user.lastname %>" name="lastname" id="lastname">
+
+                    </div>
+                    <div class="items">
+                        <label for="phone">Phone</label>
+                        <input type="number" value="<%= user.phone %>" name="phone" id="phone">
+
+                    </div>
+                    <button class="btn-prime" type="submit">Update</button>
+                </form>
+            </div>
+            <li>
+                <span>Wishlist</span>
+                <ion-icon class="cart-opener" name="chevron-down-outline"></ion-icon>
+            </li>
+            <div class="whishlist accordion">
+                <h6 style="text-align: center;">(Coming Soon...) Not Developed By Lazy Developer ☻</h6>
+            </div>
+            <li>
+                <span>My Orders</span>
+                <ion-icon class="cart-opener" name="chevron-down-outline"></ion-icon>
+            </li>
+            <div class="orders accordion">
+                <% if(orders.length===0) {%>
+                    <h6 style="text-align: center;">No orders placed yet.</h6>
+                <% } %>
+                <% for(let order of orders) {%>
+                    <div class="order-list">
+                        <div class="order-img">
+                            <ion-icon name="cart"></ion-icon>
+                        </div>
+                        <div class="order-info">
+                            <b><span> Products ordered : <%= order.totalProducts %></span></b>
+                            <b><span> Amount spent : <%= order.totalAmount %></span></b>
+                            <a  href="/genz/order/confirmed/<%=order._id%>">Get Invoice </a>
+                        </div>
+                    </div>
+
+                <% } %>
+            </div>
+            <li>
+                <span>Shipping Address</span>
+                <ion-icon class="cart-opener" name="chevron-down-outline"></ion-icon>
+            </li>
+            <div class="shipping-detail accordion">
+                <form action="/genz/user/update" method="post">
+                    <div class="items">
+                        <label for="address">Address</label>
+                        <input type="text" value="<%= user.address %>" name="address" id="address">
+
+                    </div>
+                    <div class="items">
+                        <label for="country">Country</label>
+                        <input type="text" value="<%= user.country %>" name="country" id="country">
+
+                    </div>
+                    <div class="items">
+                        <label for="city">City</label>
+                        <input type="text" value="<%= user.city %>" name="city" id="city">
+
+                    </div>
+                    <div class="items">
+                        <label for="zipcode">Zipcode</label>
+                        <input type="number" value="<%= user.zipcode %>" name="zipcode" id="zipcode">
+
+                    </div>
+                    <button class="btn-prime" type="submit">Update</button>
+                </form>
+            </div>
+        </ul>
+        <form action="/genz/user/logout" method="get">
+            <button class="btn-sec" type="submit">Sign Out</button>
+        </form>
+    </div>
+
+    <script>
+        const li = document.querySelectorAll("li");
+        const accordion = document.querySelectorAll(".accordion");
+
+        for (let i = 0; i < li.length; i++) {
+            li[i].addEventListener("click", () => {
+                accordion[i].classList.toggle("accordion-active");
+            })
+        }
+    </script>

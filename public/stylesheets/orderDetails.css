@@ -1,0 +1,119 @@
+body{
+    position: relative;
+    width: min(98%, 1800px);
+    height: 100%;
+    margin-inline: auto;
+    text-align: center;
+}
+.main{
+    position: absolute;
+    top: 0;
+    width: min(100%, 1800px);
+    background: white;
+    z-index: 9999;
+}
+.main #logo{
+    margin-top: 25px;
+}
+.main-left, .main-right{
+    margin-top: 30px;
+    text-align: start;
+    padding: 10px 15px;
+}
+
+.main-container{
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+.order-details{
+    display: flex;
+    margin-top: 10px;
+    align-items: center;
+}
+.order-details-left ion-icon{
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.order-details-right span{
+    display: block;
+    padding-left: 10px;
+}
+h6{
+    margin-bottom: 0;
+}
+.order-updates, .contact-details{
+    margin-top: 30px;
+}
+
+.main-right-head{
+    display: flex;
+    align-items: center;
+}
+.main-right-head ion-icon{
+    width: 25px;
+    height: 25px;
+    padding-right: 5px;
+}
+.confirm-prod-list{
+    margin-top: 20px;
+    height: 150px;
+    overflow-y: auto;
+    padding: 0px 5px;
+}
+.detail-cards {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.detail-cards img {
+    height: 70px;
+    width: 70px;
+    object-fit: cover;
+}
+
+.card-right span{
+    display: block;
+}
+.main-price-child{
+    display: flex;
+    padding-right: 10px;
+    justify-content: space-between;
+}
+.main-price-div{
+    margin-top: 20px;
+}
+button{
+    margin-block: 30px;
+    width: 100%;
+    height: 45px;
+    background-color: #4A4A4A;
+    color: white;
+    outline: none;
+    border: none;
+    font-weight: 600;
+    transition: 0.3s ease-in;
+}
+button:hover{
+    background-color: #010101;
+    color: white;
+    transition: 0.3s ease-in;
+}
+@media screen and (max-width:900px){
+    .main-container{
+        flex-direction: column;
+        margin-inline: auto;
+        width: min(100%, 470px);
+        gap: 0;
+    }
+    .main-left, .main-right{
+        padding: 5px;
+    }
+    button{
+        margin-top: 40px;
+    }
+}

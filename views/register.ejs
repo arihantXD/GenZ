@@ -1,0 +1,50 @@
+<% layout("/layout/boilerplate") %>
+    <link rel="stylesheet" href="/stylesheets/register.css">
+
+    <div class="main">
+        <div class="main-head">
+            <h5>
+                Create your GenZ Account
+            </h5>
+            <span>Already have an account? <a href="/genz/user/login">Sign In</a></span>
+        </div>
+        <div class="main-form">
+            <form action="/genz/user/register" method="post">
+                <input required placeholder="First Name" type="text" name="name">
+                <input required placeholder="Email" type="email" name="username">
+                <input id="password" required placeholder="Password" type="password" name="password">
+                <input id="confirmPassword" required placeholder="Confirm Password" type="password" name="password2">
+                <span id="tempMessage" style="text-align: center;">
+                    <% if(message) {%>
+                        <%= message %>
+                            <% } %>
+                </span>
+                <button id="submitButton" class="btn-sec" disabled type="submit">Create Account</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const inputs = document.querySelectorAll("input");
+        const passwordField = document.getElementById('password');
+        const confirmPasswordField = document.getElementById('confirmPassword');
+        const submitButton = document.getElementById('submitButton');
+        const textField = document.querySelector("#tempMessage")
+
+
+        function validatePasswordMatch() {
+            const passwordValue = passwordField.value;
+            const confirmPasswordValue = confirmPasswordField.value;
+
+            if (passwordValue === confirmPasswordValue) {
+                submitButton.removeAttribute('disabled');
+                textField.innerText = "Password Matched!";
+            } else {
+                submitButton.setAttribute('disabled', 'true');
+                textField.innerText = "Password mismatch, cant submit the form!";
+            }
+        }
+
+        passwordField.addEventListener('input', validatePasswordMatch);
+        confirmPasswordField.addEventListener('input', validatePasswordMatch);
+    </script>

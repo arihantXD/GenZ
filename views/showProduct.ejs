@@ -1,0 +1,233 @@
+<% layout("/layout/boilerplate") %>
+    <link rel="stylesheet" href="/stylesheets/showProducts.css">
+
+    <div class="main">
+        <div class="imgInfo">
+            <div id="imgDiv" class="carousel slide" data-bs-ride="false">
+
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#imgDiv" data-bs-slide-to="0" class="active"></button>
+                    <button type="button" data-bs-target="#imgDiv" data-bs-slide-to="1"></button>
+                    <button type="button" data-bs-target="#imgDiv" data-bs-slide-to="2"></button>
+                    <button type="button" data-bs-target="#imgDiv" data-bs-slide-to="3"></button>
+                </div>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="<%= product.colors[0] %>" alt="Los Angeles">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="<%= product.colors[1] %>" alt="Chicago">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="<%= product.colors[2] %>" alt="New York">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="<%= product.colors[3] %>" alt="New York">
+                    </div>
+                </div>
+
+                <button class="carousel-control-prev" type="button" data-bs-target="#imgDiv" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon"></span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#imgDiv" data-bs-slide="next">
+                    <span class="carousel-control-next-icon"></span>
+                </button>
+            </div>
+            <div class="infoDiv">
+                <div class="name-price">
+                    <h6>
+                        <%= product.name %>
+                    </h6>
+                    <h6>$<%= product.price %>
+                    </h6>
+                </div>
+                <div class="brandDescription">
+                    <p><%= product.xsdescription  %></p>
+                </div>
+                <div class="size-Div">
+                    <h6>Size</h6>
+                    <div class="inputGroup">
+                        <% for(let size of product.sizes) {%>
+                            <div class="sizeTile">
+                                <input  class="radioButton" type="radio" name="size" value="<%= size %>">
+                                <label for="">
+                                    <span>
+                                        <%= size %>
+                                    </span>
+                                </label>
+                            </div>
+                            <% } %>
+                    </div>
+                </div>
+
+                <div class="addToCart">
+                    <button  value="<%=product._id%>" class="cartAdder" type="submit">Add to Cart</button>
+                    <button type="submit"><ion-icon name="heart-outline"></ion-icon></button>
+                </div>
+            </div>
+        </div>
+        <div class="saperator">
+            <div class="description">
+                <h6>Description</h6>
+                <ul>
+                    <% for(let li of product.description){ %>
+                        <li><span>
+                                <%= li %>
+                            </span></li>
+                        <% } %>
+                </ul>
+
+            </div>
+            <div class="delivery">
+                <h6>Delivery</h6>
+                <ul>
+                    <li>Free worldwide shipping on all orders over $95.</li>
+                    <li>Orders dispatched within 1-2 working days</li>
+                </ul>
+            </div>
+        </div>
+        <div class="feature">
+            <div class="sassyIcon">
+                <div class="iconList">
+                    <ion-icon name="flash"></ion-icon>
+                    <span>Lightning fast delivery</span>
+                </div>
+                <div class="iconList">
+                    <ion-icon name="happy"></ion-icon>
+                    <span>Hassle free order</span>
+
+                </div>
+                <div class="iconList">
+                    <ion-icon name="earth"></ion-icon>
+                    <span>Worldwide shipping</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="recomendationGrid">
+            <h6>Recommended for you</h6>
+            <div class="products">
+                <% for(let product of products){ %>
+                    <div class="product-div">
+                        <div class="product-img">
+                            <a href="/genz/get/<%=product._id%>"><img class="img" src="<%=product.colors[0]%>" alt=""></a>
+                            <ion-icon class="adder" name="bag-add-outline"></ion-icon>
+                            <div class="size-Div-small">
+                                <h6>Size</h6>
+                                <div class="inputGroup-small">
+                                    <% for(let size of products[0].sizes) {%>
+                                        <div class="sizeTile-small">
+                                            <input class="radioButton-small" type="radio" name="size" value="<%= size %>">
+                                            <label for="">
+                                                <span>
+                                                    <%= size %>
+                                                </span>
+                                            </label>
+                                        </div>
+                                        <% } %>
+                                </div>
+                                <button disabled class="cartAdder-small" value="<%=product._id%>" type="submit">Add to
+                                    Cart</button>
+                                <ion-icon id="close" name="close-outline"></ion-icon>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <span>
+                                <%=product.name%>
+                            </span>
+                            <span>$<%=product.price%></span>
+                        </div>
+                    </div>
+                    <% } %>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const urloff = ['http://localhost:3000/genz/getImages/F', "http://localhost:3000/genz/addCart"];
+        const urlon = ['https://genz-91f1.onrender.com/genz/getImages/F',
+            'https://genz-91f1.onrender.com/genz/addCart'];
+        const sizes = document.querySelectorAll(".radioButton");
+        const addToCart = document.querySelectorAll(".cartAdder");
+        let currentSize = "";
+        let currentProd = "";
+        for (let i = 0; i < sizes.length; i++) {
+            sizes[i].addEventListener("click", (event) => {
+                currentSize = event.target.value;
+                addToCart[Math.floor(i / 6)].disabled = false;
+                addToCart[Math.floor(i / 6)].classList.add("cartAdder-active");
+            })
+        }
+
+        for (let i = 0; i < addToCart.length; i++) {
+            addToCart[i].addEventListener("click", (event) => {
+                currentProd = event.target.value;
+                const data = { pId: currentProd, size: currentSize === "" ? "S" : currentSize };
+                fetch(urlon[1], {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data)
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        cartDiv.classList.toggle("cart-div-active");
+                        getCartItem();
+                    })
+                    .catch(error => {
+                        console.error('Fetch error:', error);
+                    });
+            })
+        }
+
+        const adder = document.querySelectorAll(".adder");
+        const sizeDivSmall = document.querySelectorAll(".size-Div-small");
+        for (let i = 0; i < adder.length; i++) {
+            adder[i].addEventListener("click", () => {
+                for (size of sizeDivSmall) {
+                    size.classList.remove("size-Div-small-active")
+                }
+                sizeDivSmall[i].classList.add("size-Div-small-active")
+            })
+        }
+        const closeSizeDive = document.querySelectorAll("#close");
+        for (let i = 0; i < closeSizeDive.length; i++) {
+            closeSizeDive[i].addEventListener("click", () => {
+                sizeDivSmall[i].classList.remove("size-Div-small-active");
+            })
+        }
+
+        const sizesSmall = document.querySelectorAll(".radioButton-small");
+        const addToCartSmall = document.querySelectorAll(".cartAdder-small");
+        for (let i = 0; i < sizesSmall.length; i++) {
+            sizesSmall[i].addEventListener("click", (event) => {
+                currentSize = event.target.value;
+                addToCartSmall[Math.floor(i / 6)].disabled = false;
+                addToCartSmall[Math.floor(i / 6)].classList.add("cartAdder-small-active");
+            })
+        }
+
+        for (let i = 0; i < addToCartSmall.length; i++) {
+            addToCartSmall[i].addEventListener("click", (event) => {
+                currentProd = event.target.value;
+                const data = { pId: currentProd, size: currentSize };
+                fetch(urlon[1], {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data)
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        sizeDivSmall[i].classList.remove("size-Div-small-active");
+                        cartDiv.classList.toggle("cart-div-active");
+                        getCartItem();
+                    })
+                    .catch(error => {
+                        console.error('Fetch error:', error);
+                    });
+            })
+        }
+    </script>

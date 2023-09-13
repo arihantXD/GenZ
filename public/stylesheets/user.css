@@ -1,0 +1,79 @@
+.main{
+    text-align: center;
+    margin-top: 40px;
+    padding: 0px 10px;
+    width: min(100%, 750px);
+    margin-inline: auto;
+}
+
+.main h6{
+    line-height: 1rem;
+}
+
+ul{
+    text-align: start;
+    padding: 0;
+}
+
+ul li{
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 10px;
+    background-color: #ddd;
+    margin-block: 10px;
+}
+
+.accordion{
+    margin-inline: auto;   
+    width: 90%;
+    height: 0;
+    overflow: hidden;
+    margin-inline: auto;
+    transition: 0.3s ease-out;
+}
+
+.accordion-active{
+    padding: 10px;
+    height: 250px;
+    overflow-y: auto;
+    transition: 0.3s ease-out;
+}
+
+input {
+    display: block;
+    min-width: 100%;
+    margin-block: 5px;
+    border: 1px solid #ddd;
+    padding: 5px 10px;
+    outline: none;
+}
+
+
+.order-list{
+    display: flex;
+    border-bottom: 2px solid #ddd;
+    gap: 20px;
+    margin: 10px 0px;
+    margin-bottom: 8px;
+}
+.order-list ion-icon{
+    font-size: 110px;
+}
+.order-list span, a{
+    display: block;
+}
+.order-list a{
+    margin-top: 15px;
+    padding: 5px 10px; 
+    border: 2px solid #333;
+    font-weight: 600;
+    transition: 0.3s ease-out;
+}
+.order-list a:hover{
+    background-color: #4A4A4A;
+    color: white;
+    transition: 0.3s ease-out;
+}
+
+

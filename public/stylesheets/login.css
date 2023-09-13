@@ -1,0 +1,30 @@
+.main{
+    text-align: center;
+    margin-top: 40px;
+    padding: 0px 10px;
+    width: min(100%, 750px);
+    margin-inline: auto;
+}
+
+.main-head span{
+    display: block;
+    padding-bottom: 20px;
+}
+
+.main-form{
+    margin-inline: auto;
+}
+.main-form input{
+    display: block;
+    width: 100%;
+    margin-block: 20px;
+    border: 1px solid #6e6e6e;
+    padding: 7px;
+    outline: none;
+}
+
+
+.main .forgetLink{
+    text-align: left;
+    display: block;
+}

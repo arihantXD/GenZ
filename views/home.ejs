@@ -1,0 +1,184 @@
+<% layout("/layout/boilerplate") %>
+    <link rel="stylesheet" href="/stylesheets/home.css">
+
+
+    <div class="main">
+        <div class="main-img">
+            <img class="img" src="/images/model.jpg" alt="">
+            <div class="main-img-description">
+                <h6>Style is never bad</h6>
+                <span>Embracing the fashion!</span>
+                <div class="main-img-link">
+                    <a class="btn" href="/genz/get/Men/All">Shop Men</a>
+                    <a class="btn" href="/genz/get/Women/All">Shop Women</a>
+                </div>
+            </div>
+        </div>
+        <div class="main-description">
+            <div class="main-features">
+                <div class="main-features-head">
+                    <ion-icon name="shirt"></ion-icon>
+                    <span>Variety of products</span>
+                </div> 
+                <p> Select among the variety of products with different flavours</p>
+            </div>
+            <div class="main-features">
+                <div class="main-features-head">
+                    <ion-icon name="compass"></ion-icon>
+                    <span>Hassel free navigation</span>
+                </div>
+                <p>Simple user interface, products can be selected withou any complexity</p>
+            </div>
+            <div class="main-features">
+                <div class="main-features-head">
+                    <ion-icon name="earth"></ion-icon>
+                    <span>World wide shipping</span>
+                </div>
+                <p>Shipping across the world theres no part of globe we havent reached</p>
+            </div>
+        </div>
+        <div class="main-category">
+            <div class="category-child category-men">
+                <img src="https://us.pand.co/cdn/shop/products/10years_0003_IMG_7596_1728x.jpg?v=1678444337" alt="">
+                <a href="/genz/get/Men/All"><h5>Shop Men</h5></a>
+            </div>
+            <div class="category-child category-women">
+                <img src="https://us.pand.co/cdn/shop/products/Riseabovesweater_0001_2023_PandCo_PalmSprings_AZ3I4287_1728x.jpg?v=1679330409"
+                alt="">
+                <a href="/genz/get/Women/All"><h5>Shop Women</h5></a>
+            </div>
+        </div>
+        <div class="prod-listing">
+            <h6>New Arrivals</h6>
+            <div class="products">
+                <% for(let product of products){ %>
+                    <div class="product-div">
+                        <div class="product-img">
+                            <a href="/genz/get/<%=product._id%>"><img class="img" src="<%=product.colors[0]%>"
+                                    alt=""></a>
+                            <ion-icon class="adder" name="bag-add-outline"></ion-icon>
+                            <div class="size-Div-small">
+                                <h6>Size</h6>
+                                <div class="inputGroup-small">
+                                    <% for(let size of products[0].sizes) {%>
+                                        <div class="sizeTile-small">
+                                            <input class="radioButton-small" type="radio" name="size"
+                                                value="<%= size %>">
+                                            <label for="">
+                                                <span>
+                                                    <%= size %>
+                                                </span>
+                                            </label>
+                                        </div>
+                                        <% } %>
+                                </div>
+                                <button disabled class="cartAdder-small" value="<%=product._id%>" type="submit">Add to
+                                    Cart</button>
+                                <ion-icon id="close" name="close-outline"></ion-icon>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <span>
+                                <%=product.name%>
+                            </span>
+                            <span>$<%=product.price%></span>
+                        </div>
+                    </div>
+                    <% } %>
+            </div>
+        </div>
+        <div class="prod-listing">
+            <h6>Featured Products</h6>
+            <div class="products">
+                <% for(let product of products){ %>
+                    <div class="product-div">
+                        <div class="product-img">
+                            <a href="/genz/get/<%=product._id%>"><img class="img" src="<%=product.colors[0]%>"
+                                    alt=""></a>
+                            <ion-icon class="adder" name="bag-add-outline"></ion-icon>
+                            <div class="size-Div-small">
+                                <h6>Size</h6>
+                                <div class="inputGroup-small">
+                                    <% for(let size of products[0].sizes) {%>
+                                        <div class="sizeTile-small">
+                                            <input class="radioButton-small" type="radio" name="size"
+                                                value="<%= size %>">
+                                            <label for="">
+                                                <span>
+                                                    <%= size %>
+                                                </span>
+                                            </label>
+                                        </div>
+                                        <% } %>
+                                </div>
+                                <button disabled class="cartAdder-small" value="<%=product._id%>" type="submit">Add to
+                                    Cart</button>
+                                <ion-icon id="close" name="close-outline"></ion-icon>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <span>
+                                <%=product.name%>
+                            </span>
+                            <span>$<%=product.price%></span>
+                        </div>
+                    </div>
+                    <% } %>
+            </div>
+        </div>
+
+    </div>
+    <script>
+        const urloff = ['http://localhost:3000/genz/getImages/F', "http://localhost:3000/genz/addCart"];
+        const urlon = ['https://genz-91f1.onrender.com/genz/getImages/F',
+            'https://genz-91f1.onrender.com/genz/addCart'];
+            const adder = document.querySelectorAll(".adder");
+        const sizeDivSmall = document.querySelectorAll(".size-Div-small");
+        for (let i = 0; i < adder.length; i++) {
+            adder[i].addEventListener("click", () => {
+                for (size of sizeDivSmall) {
+                    size.classList.remove("size-Div-small-active")
+                }
+                sizeDivSmall[i].classList.add("size-Div-small-active")
+            })
+        }
+        const closeSizeDive = document.querySelectorAll("#close");
+        for (let i = 0; i < closeSizeDive.length; i++) {
+            closeSizeDive[i].addEventListener("click", () => {
+                sizeDivSmall[i].classList.remove("size-Div-small-active");
+            })
+        }
+
+        const sizesSmall = document.querySelectorAll(".radioButton-small");
+        const addToCartSmall = document.querySelectorAll(".cartAdder-small");
+        for (let i = 0; i < sizesSmall.length; i++) {
+            sizesSmall[i].addEventListener("click", (event) => {
+                currentSize = event.target.value;
+                addToCartSmall[Math.floor(i / 6)].disabled = false;
+                addToCartSmall[Math.floor(i / 6)].classList.add("cartAdder-small-active");
+            })
+        }
+
+        for (let i = 0; i < addToCartSmall.length; i++) {
+            addToCartSmall[i].addEventListener("click", (event) => {
+                currentProd = event.target.value;
+                const data = { pId: currentProd, size: currentSize };
+                fetch(urlon[1], {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data)
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        sizeDivSmall[i].classList.remove("size-Div-small-active");
+                        cartDiv.classList.toggle("cart-div-active");
+                        getCartItem();
+                    })
+                    .catch(error => {
+                        console.error('Fetch error:', error);
+                    });
+            })
+        }
+    </script>
