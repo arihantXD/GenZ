@@ -146,8 +146,9 @@ function isCartEmpty(req, res, next) {
 
 
 app.get("/", async (req, res) => {
-  const products = await Product.find({});
-  res.render("home", { products })
+  const featuredProducts = await Product.find({type: "Featured Products"});
+  const newArrivals = await Product.find({type: "New Arrivals"});
+  res.render("home", { featuredProducts, newArrivals })
 })
 
 
@@ -375,6 +376,7 @@ app.get("/genz/order/confirmed/:id", sanitizeUserContent, async (req, res) => {
 
 
 app.get("/create", (req, res) => {
+
   res.render("create");
 
 })
@@ -382,6 +384,7 @@ app.get("/create", (req, res) => {
 
 
 app.post("/create", async (req, res) => {
+  const password = prompt("Enter Password")
   const { name, price, gender, type, featured, xsdescription } = req.body;
   const colorurl = req.body.colorurl.split(",");
   const description = req.body.description.split("\n");

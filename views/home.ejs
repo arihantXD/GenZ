@@ -51,7 +51,7 @@
         <div class="prod-listing">
             <h6>New Arrivals</h6>
             <div class="products">
-                <% for(let product of products){ %>
+                <% for(let product of newArrivals){ %>
                     <div class="product-div">
                         <div class="product-img">
                             <a href="/genz/get/<%=product._id%>"><img class="img" src="<%=product.colors[0]%>"
@@ -90,7 +90,7 @@
         <div class="prod-listing">
             <h6>Featured Products</h6>
             <div class="products">
-                <% for(let product of products){ %>
+                <% for(let product of featuredProducts){ %>
                     <div class="product-div">
                         <div class="product-img">
                             <a href="/genz/get/<%=product._id%>"><img class="img" src="<%=product.colors[0]%>"
