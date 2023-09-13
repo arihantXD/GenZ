@@ -374,9 +374,9 @@ app.get("/genz/order/confirmed/:id", sanitizeUserContent, async (req, res) => {
 // })
 
 
-// app.get("/create", (req, res) => {
-//   res.render("create");
-// })
+app.get("/create", (req, res) => {
+  res.render("create");
+})
 
 
 
