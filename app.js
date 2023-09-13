@@ -384,7 +384,6 @@ app.get("/create", (req, res) => {
 
 
 app.post("/create", async (req, res) => {
-  const password = prompt("Enter Password")
   const { name, price, gender, type, featured, xsdescription } = req.body;
   const colorurl = req.body.colorurl.split(",");
   const description = req.body.description.split("\n");
