@@ -154,8 +154,8 @@
         for (let i = 0; i < sizesSmall.length; i++) {
             sizesSmall[i].addEventListener("click", (event) => {
                 currentSize = event.target.value;
-                addToCartSmall[Math.floor(i / sizesSmall.length)].disabled = false;
-                addToCartSmall[Math.floor(i / sizesSmall.length)].classList.add("cartAdder-small-active");
+                addToCartSmall[Math.floor(i/parseInt(sizesSmall.length/addToCartSmall.length))].disabled = false;
+                addToCartSmall[Math.floor(i/parseInt(sizesSmall.length/addToCartSmall.length))].classList.add("cartAdder-small-active");
             })
         }
 

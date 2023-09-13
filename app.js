@@ -146,8 +146,8 @@ function isCartEmpty(req, res, next) {
 
 
 app.get("/", async (req, res) => {
-  const featuredProducts = await Product.find({featured: "Featured Products"});
-  const newArrivals = await Product.find({featured: "New Arrivals"});
+  const featuredProducts = await Product.find({ featured: "Featured Products" });
+  const newArrivals = await Product.find({ featured: "New Arrivals" });
   res.render("home", { featuredProducts, newArrivals })
 })
 
@@ -236,7 +236,7 @@ app.get("/genz/user/login", isNotLoggedIn, async (req, res) => {
 
 
 app.post('/genz/user/login', sanitizeUserContent, (req, res, next) => {
-  passport.authenticate('local',{keepSessionInfo: true}, (err, user, info) => {
+  passport.authenticate('local', { keepSessionInfo: true }, (err, user, info) => {
     if (err) {
       return next(err);
     }
@@ -246,7 +246,7 @@ app.post('/genz/user/login', sanitizeUserContent, (req, res, next) => {
       return res.redirect('/genz/user/login');
     }
 
-    req.logIn(user, (err) => {
+    req.logIn(user,{ keepSessionInfo: true }, (err) => {
       if (err) {
         return next(err);
       }
@@ -315,7 +315,12 @@ app.post("/genz/order/info", isLoggedIn, sanitizeUserContent, async (req, res) =
 })
 
 app.post("/genz/order/confirmed", isLoggedIn, isCartEmpty, async (req, res) => {
-  let date = new Date().toLocaleDateString("en-IN");
+  let currentDate = new Date();
+  let dateParts = date.split('/');
+  let day = parseInt(dateParts[0], 10);
+  let month = parseInt(dateParts[1], 10);
+  let year = parseInt(dateParts[2], 10);
+  let orderDate = new Date(year, month - 1, day);
   let totalAmount = 0, totalProduct = 0;
   for (let item of req.session.cart) {
     totalAmount += parseInt(item.price) * parseInt(item.qty);
@@ -328,7 +333,7 @@ app.post("/genz/order/confirmed", isLoggedIn, isCartEmpty, async (req, res) => {
     products: req.session.cart,
     totalAmount: totalAmount,
     totalProducts: totalProduct,
-    orderDate: date,
+    orderDate: orderDate,
     status: "Delivered",
     shippingAddress: req.user.address,
     paymentMethod: "ZCoin",

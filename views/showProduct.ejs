@@ -154,8 +154,8 @@
         for (let i = 0; i < sizes.length; i++) {
             sizes[i].addEventListener("click", (event) => {
                 currentSize = event.target.value;
-                addToCart[Math.floor(i / sizes.length)].disabled = false;
-                addToCart[Math.floor(i / sizes.length)].classList.add("cartAdder-active");
+                addToCart[Math.floor(i/parseInt(sizes.length/addToCart.length))].disabled = false;
+                addToCart[Math.floor(i/parseInt(sizes.length/addToCart.length))].classList.add("cartAdder-active");
             })
         }
 
@@ -203,8 +203,8 @@
         for (let i = 0; i < sizesSmall.length; i++) {
             sizesSmall[i].addEventListener("click", (event) => {
                 currentSize = event.target.value;
-                addToCartSmall[Math.floor(i / sizesSmall.length)].disabled = false;
-                addToCartSmall[Math.floor(i / sizesSmall.length)].classList.add("cartAdder-small-active");
+                addToCartSmall[Math.floor(i/parseInt(sizesSmall.length/addToCartSmall.length))].disabled = false;
+                addToCartSmall[Math.floor(i/parseInt(sizesSmall.length/addToCartSmall.length))].classList.add("cartAdder-small-active");
             })
         }
 
