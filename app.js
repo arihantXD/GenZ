@@ -311,7 +311,7 @@ app.post("/genz/order/info", isLoggedIn, sanitizeUserContent, async (req, res) =
   const { firstname, lastname, country, city, address, zipcode, phone } = req.body;
   const id = await req.user._id;
   const user = await User.updateOne({ _id: id }, { $set: { name: firstname.trim(), lastname: lastname.trim(), country: country.trim(), city: city.trim(), address: address.trim(), zipcode: zipcode, phone: phone } });
-  res.json(user);
+  res.json(await req.user);
 })
 
 app.post("/genz/order/confirmed", isLoggedIn, isCartEmpty, async (req, res) => {
