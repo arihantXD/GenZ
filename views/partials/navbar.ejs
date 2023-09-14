@@ -242,7 +242,7 @@
                     name.innerText = product.name;
                     const price = document.createElement("span");
                     price.setAttribute("class", "prod-price");
-                    price.innerText = product.price;
+                    price.innerText = product.price + " INR";
                     totalValue += parseInt(product.price) * product.qty;
                     prodNamePrice.append(name, price);
                     prodDetails.append(prodNamePrice);
@@ -278,8 +278,8 @@
                 else {
                     itemCount.innerText = ` You have ${totalProd} items in your cart`;
                     cartDetails.classList.add("cart-details-active");
-                    orderValue.innerText = `\&#8377; ${totalValue}`;
-                    orderTotal.innerText = `\&#8377; ${totalValue}`;
+                    orderValue.innerText = `${totalValue}  INR`;
+                    orderTotal.innerText = ` ${totalValue} INR`;
                 }
             })
             .catch(error => {

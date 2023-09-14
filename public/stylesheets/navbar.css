@@ -57,7 +57,7 @@ a{
 .ham-section {
     position: absolute;
     min-width: 100%;
-    padding: 0px 5px;
+    padding: 0px 10px;
     height: calc(100vh - 70px);
     z-index: 999;
     background: white;
@@ -121,7 +121,7 @@ a{
     background: white;
     top: 0;
     right: 0;
-    padding: 15px 5px;
+    padding: 15px 10px;
     transition: transform 0.3s ease-in;
     z-index: 999;
     min-height: 100vh;
