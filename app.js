@@ -90,9 +90,9 @@ passport.use(new LocalStrategy(
 ));
 
 
-app.use((req, res, next) => {
+app.use( async (req, res, next) => {
   res.locals.cart = req.session.cart !== null ? req.session.cart : null;
-  res.locals.user = req.user !== null ? req.user : null;
+  res.locals.user = await req.user !== null ? await req.user : null;
   next();
 })
 
@@ -310,7 +310,7 @@ app.get("/genz/order/checkout", isLoggedIn, isCartEmpty, async (req, res) => {
 
 app.post("/genz/order/info", isLoggedIn, sanitizeUserContent, async (req, res) => {
   const { firstname, lastname, country, city, address, zipcode, phone } = req.body;
-  const user = await User.updateOne({ _id: req.user._id }, { $set: { name: firstname.trim(), lastname: lastname.trim(), country: country.trim(), city: city.trim(), address: address.trim(), zipcode: zipcode, phone: phone } });
+  const user = await User.updateOne({ _id: await req.user._id }, { $set: { name: firstname.trim(), lastname: lastname.trim(), country: country.trim(), city: city.trim(), address: address.trim(), zipcode: zipcode, phone: phone } });
   res.json(user);
 })
 

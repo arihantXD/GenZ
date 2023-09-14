@@ -94,7 +94,7 @@
                                 <span>
                                     <%= prod.name %>
                                 </span>
-                                <span><b><%= prod.size %> x <%= prod.qty %>, $ <%= prod.price %></b></span>
+                                <span><b><%= prod.size %> X <%= prod.qty %>,  &#8377; <%= prod.price %></b></span>
                             </div>
                         </div>
                         <% } %>
@@ -103,7 +103,7 @@
                     <div class="main-price-child">
                         <span>Subtotal</span>
                         <span>
-                            <b><%= order.totalAmount %></b>
+                            <b>&#8377;<%= order.totalAmount %></b>
                         </span>
                     </div>
                     <div class="main-price-child">
@@ -113,7 +113,7 @@
                     <div class="main-price-child">
                         <span>Total</span>
                         <span>
-                            <b><%= order.totalAmount %></b>
+                            <b>&#8377;<%= order.totalAmount %></b>
                         </span>
                     </div>
                 </div>

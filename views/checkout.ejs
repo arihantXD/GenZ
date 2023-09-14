@@ -50,7 +50,7 @@
                             <span>Subtotal</span>
                             <% let total=0; for(item of cart) {%>
                                 <% total+=item.price * item.qty; }%>
-                                    <span>$ <%= total %></span>
+                                    <span>&#8377; <%= total %></span>
                         </div>
                         <div class="price-div-child">
                             <span>Shipping</span>
@@ -58,7 +58,7 @@
                         </div>
                         <div class="price-div-child">
                             <span>Total</span>
-                            <span>$ <%= total%></span>
+                            <span>&#8377; <%= total%></span>
                         </div>
                     </div>
                 </div>
