@@ -58,11 +58,11 @@ app.use(passport.session());
 
 
 passport.serializeUser((user, done) => {
-  done(null, user.id);
+  done(null, user._id);
 });
 
-passport.deserializeUser((id, done) => {
-  const user = User.findById(id);
+passport.deserializeUser(async (id, done) => {
+  const user = await User.findById(id);
   done(null, user);
 });
 
@@ -92,7 +92,6 @@ passport.use(new LocalStrategy(
 
 app.use( async (req, res, next) => {
   res.locals.cart = req.session.cart !== null ? req.session.cart : null;
-  res.locals.user = await req.user !== null ? await req.user : null;
   next();
 })
 
