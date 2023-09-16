@@ -360,7 +360,7 @@ app.post("/genz/review/addReview", sanitizeUserContent  ,async(req, res)=>{
   const {reviewName, review} = req.body;
   const newReview = new Review({reviewName : reviewName, review : review});
   await newReview.save();
-  res.redirect("/genz/addReview");
+  res.redirect("/genz/review/addReview");
 })
 
 
