@@ -1,0 +1,68 @@
+main{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background: white;
+    position: absolute;
+    top: 0;
+}
+.main {
+    padding: 0px 10px;
+    background: white;
+    margin-inline: auto;
+    width: min(100%, 600px);
+    margin-top: 40px;
+}
+.main h6, h5{
+    text-align: center;
+}
+.troll-div{
+    display: flex;
+    gap: 30px;
+    margin-top: 20px;
+}
+
+.troll-div iframe{
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+}
+@media screen and (max-width:800px){
+    .troll-div{
+        flex-direction: column;
+        align-items: center;
+        padding: 10px;
+    }
+    .troll-div-details{
+        text-align: center;
+    }
+}
+
+textarea, input{
+    display: block;
+    width: 100%;
+    margin-block: 20px;
+    border: 1px solid #6e6e6e;
+    padding: 7px;
+    outline: none;
+}
+.form-elements{
+    margin-top: 50px;
+    text-align: center;
+}
+
+.main p{
+    margin-bottom: 0;
+}
+.review-div h6{
+    text-align: start;
+    display: inline;
+}
+.review-container{
+    width: 100%;
+    background:  #ddd;
+    padding: 15px 10px;
+    margin-block: 20px;
+}
+
+

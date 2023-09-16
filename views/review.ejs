@@ -1,0 +1,43 @@
+<% layout("/layout/boilerplate") %>
+    <link rel="stylesheet" href="/stylesheets/review.css">
+    <main>
+
+        <div class="main">
+            <h5>Genz</h5>
+            <h6>Send your reviews</h6>
+            <div class="troll-div">
+                <iframe src="/gif/cat.gif" frameBorder="0"></iframe>
+                <div class="troll-div-details">
+                    <h6>This is Max</h6>
+                    <span> He is an aggressive typer, and he makes 20 mistakes in a single line that are grammatically
+                        incorrect and make no sense. But what can we expect?<b> He's just a Cat.</b></span>
+                </div>
+            </div>
+            <div class="form-elements">
+                <form action="/genz/addReview" method="post">
+                    <p>Please don't be like Max. Take a minute to structure your review; be clear and to the point. If
+                        you find any bugs, please mention them. Constructive criticism is appreciated.
+                        <input type="text" name="reviewName" placeholder="Please enter your real name" id="">
+                        <textarea placeholder="Please enter your feedback" rows="5"  type="text" name="review"  id="" ></textarea>
+                        <button class="btn-sec" type="submit">Send Feedback</button>
+                </form>
+                <form action="/" method="get">
+                    <button class="btn-prime" type="submit">Go Back</button>
+                </form>
+            </div>
+
+            <div class="review-div">
+                <% for(let review of reviews) {%>
+                    <div class="review-container">
+                        <h6 class="review-name">
+                            <%= review.reviewName %> said, 
+                        </h6>
+                        <span>
+                           &ThinSpace; <%= review.review %>
+                        </span>
+                    </div>
+                <% } %>
+            </div>
+        </div>
+    </main>
+    

@@ -17,6 +17,7 @@ const DOMPurify = require('dompurify');
 const User = require("./models/user");
 const Product = require("./models/product");
 const Order = require("./models/order");
+const Review = require("./models/review");
 
 
 
@@ -350,6 +351,18 @@ app.get("/genz/order/confirmed/:id", sanitizeUserContent, async (req, res) => {
   res.render("orderDetails", { order });
 })
 
+app.get("/genz/review/addReview", isLoggedIn ,async(req, res)=>{
+  const reviews =  await Review.find({});
+  res.render("review", {reviews : reviews})
+})
+
+app.post("/genz/review/addReview", sanitizeUserContent  ,async(req, res)=>{
+  const {reviewName, review} = req.body;
+  const newReview = new Review({reviewName : reviewName, review : review});
+  await newReview.save();
+  res.redirect("/genz/addReview");
+})
+
 
 
 
@@ -377,26 +390,26 @@ app.get("/genz/order/confirmed/:id", sanitizeUserContent, async (req, res) => {
 // })
 
 
-app.get("/create", (req, res) => {
+// app.get("/create", (req, res) => {
 
-  res.render("create");
+//   res.render("create");
 
-})
+// })
 
 
 
-app.post("/create", async (req, res) => {
-  const { name, price, gender, type, featured, xsdescription } = req.body;
-  const colorurl = req.body.colorurl.split(",");
-  const description = req.body.description.split("\n");
-  const sizes = req.body.sizes.split(",");
-  const product = new Product({
-    name: name, price: price, gender: gender, description: description, colors: colorurl, sizes: sizes, xsdescription: xsdescription, type: type, featured: featured
-  });
-  await product.save();
-  res.send("Product created");
+// app.post("/create", async (req, res) => {
+//   const { name, price, gender, type, featured, xsdescription } = req.body;
+//   const colorurl = req.body.colorurl.split(",");
+//   const description = req.body.description.split("\n");
+//   const sizes = req.body.sizes.split(",");
+//   const product = new Product({
+//     name: name, price: price, gender: gender, description: description, colors: colorurl, sizes: sizes, xsdescription: xsdescription, type: type, featured: featured
+//   });
+//   await product.save();
+//   res.send("Product created");
 
-})
+// })
 
 
 
